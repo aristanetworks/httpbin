@@ -9,4 +9,5 @@ setuptools.setup(
    name='httpbin',
    version='0.1',  # git repo commit 180283a60a1d060309eefdca3d769b1ec2d2ddb9
    packages=[ 'httpbin' ],
+   package_data={ 'httpbin': [ 'templates/*.html' ] },
 )
