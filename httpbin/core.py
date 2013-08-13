@@ -16,7 +16,10 @@ import random
 import base64
 
 from flask import Flask, Response, request, render_template, redirect, jsonify, make_response
-from raven.contrib.flask import Sentry
+try:
+   from raven.contrib.flask import Sentry
+except ImportError:
+   Sentry = None
 from werkzeug.datastructures import WWWAuthenticate
 from werkzeug.http import http_date
 from werkzeug.wrappers import BaseResponse
@@ -43,7 +46,10 @@ BaseResponse.autocorrect_location_header = False
 app = Flask(__name__)
 
 # Setup error collection
-sentry = Sentry(app)
+if Sentry:
+   sentry = Sentry(app)
+else:
+   sentry = None
 
 
 # -----------
